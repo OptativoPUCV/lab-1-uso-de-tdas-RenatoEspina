@@ -121,8 +121,7 @@ int parentesisBalanceados(char *cadena) {
    Stack* P =create_stack();
    int largo =0;
    for (int i =0; cadena[i] !='\0'; i++){
-      char *caracter =malloc(sizeof(char));
-      *caracter =cadena[i];
+      char caracter = cadena[i];
       push(P, caracter);
       largo++;
    }
