@@ -14,9 +14,9 @@ void imprime_lista(List *L) {
    int *dato;
    dato = (int*)first(L);
    printf("[");
-   while(elem !=NULL) {
-      printf("%d ", *elem);
-      elem =(int*)next(L);
+   while(dato != NULL) {
+      printf("%d ", *dato);
+      dato = (int*)next(L);
    }
    printf("]\n");
 
@@ -44,9 +44,9 @@ Al finalizar retorna la lista creada.
 List* crea_lista() {
    List* L = create_list();
    for(int i=1;i<=10;i++){
-      int *dato=(int*)malloc(sizeof(int));
-      *dato=i;
-      pushBack(L,dato);
+      int *elem=(int*)malloc(sizeof(int));
+      *elem=i;
+      pushBack(L,elem);
    }
    return L;
 }
@@ -58,10 +58,10 @@ retorne la suma de sus elementos.
 */
 int sumaLista(List *L) {
    int sumatoria=0;
-   int *dato=first(L);
-   while(dato){
-      sumatoria+=*dato;
-      dato=next(L);
+   int *elem=first(L);
+   while(elem){
+      sumatoria+=*elem;
+      elem=next(L);
    }
    return sumatoria;
 }
@@ -118,18 +118,18 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 
 int parentesisBalanceados(char *cadena) {
-   Stack* P = create_stack();
-   int largo = 0;
+   Stack* P =create_stack();
+   int largo =0;
    for (int i =0; cadena[i] !='\0'; i++){
-      char *caracter = malloc(sizeof(char));
-      *caracter = cadena[i];
+      char *caracter =malloc(sizeof(char));
+      *caracter =cadena[i];
       push(P, caracter);
       largo++;
    }
-   if (largo % 2 != 0){
+   if (largo%2 !=0){
       return 0;
    }
-   for (int i = 0; i < (largo / 2); i++){
+   for (int i =0; i <(largo / 2); i++){
       char caracter =*(char *)top(P);
       if (cadena[i] =='(' && caracter ==')'){
          pop(P);
