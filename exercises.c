@@ -14,9 +14,9 @@ void imprime_lista(List *L) {
    int *dato;
    dato = (int*)first(L);
    printf("[");
-   while(dato != NULL) {
-      printf("%d ", *dato);
-      dato = (int*)next(L);
+   while(elem !=NULL) {
+      printf("%d ", *elem);
+      elem =(int*)next(L);
    }
    printf("]\n");
 
@@ -43,7 +43,7 @@ Al finalizar retorna la lista creada.
 
 List* crea_lista() {
    List* L = create_list();
-   for(int i=1;i<11;i++){
+   for(int i=1;i<=10;i++){
       int *dato=(int*)malloc(sizeof(int));
       *dato=i;
       pushBack(L,dato);
@@ -57,16 +57,13 @@ Crea una función que reciba una lista de enteros (int*) y
 retorne la suma de sus elementos.
 */
 int sumaLista(List *L) {
-   int largo=get_size(L);
    int sumatoria=0;
-   int *dato=(int*)first(L);
-   for(size_t i=0;i<largo;i++){
-      if(dato){
-         sumatoria+=*dato;
-         dato=(int*)next(L);
-      }
+   int *dato=first(L);
+   while(dato){
+      sumatoria+=*dato;
+      dato=next(L);
    }
-   return 0;
+   return sumatoria;
 }
 
 /*
@@ -79,14 +76,12 @@ posiciona en el elemento anterior.
 */
 
 void eliminaElementos(List*L, int elem){
-   int *dato=(int*)first(L);
+   int *dato=first(L);
    while(dato){
-      int *nextDato=(int*)next(L);
       if(*dato==elem){
-         popCurrent(L);
-         dato = (int*)first(L);
+         dato=popCurrent(L);
       }
-      else dato=nextDato;
+      dato=next(L);
    }
    return;
 }
@@ -101,16 +96,17 @@ Puedes usar una pila auxiliar.
 void copia_pila(Stack* P1, Stack* P2) {
    Stack* P3=create_stack();
    while(top(P1)){
-      int elem = top(P1);
+      void *elem =top(P1);
       push(P3,elem);
       pop(P1);
    }
    while(top(P3)){
-      int elem=top(P3);
+      void *elem=top(P3);
       push(P1,elem);
       push(P2,elem);
       pop(P3);
    }
+   free(P3);
    return;
 }
 
@@ -122,21 +118,31 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 
 int parentesisBalanceados(char *cadena) {
-   Stack *P = create_stack();
-   for (int i = 0; cadena[i] != '\0'; i++) {
-      char c = cadena[i];
-      
-      if (c == '(' || c == '[' || c == '{') {
-         push(P, (void *)c);
-      } 
-      else if (c == ')' || c == ']' || c == '}') {
-         char topElem = (char)top(P);
-         if (!topElem || !(((topElem == '(' && c == ')') || (topElem == '[' && c == ']') || (topElem == '{' && c == '}')))) {
-            return 0;
-         }
+   Stack* P = create_stack();
+   int largo = 0;
+   for (int i =0; cadena[i] !='\0'; i++){
+      char *caracter = malloc(sizeof(char));
+      *caracter = cadena[i];
+      push(P, caracter);
+      largo++;
+   }
+   if (largo % 2 != 0){
+      return 0;
+   }
+   for (int i = 0; i < (largo / 2); i++){
+      char caracter =*(char *)top(P);
+      if (cadena[i] =='(' && caracter ==')'){
          pop(P);
+      }
+      else if (cadena[i] =='[' && caracter ==']'){
+         pop(P);
+      }
+      else if (cadena[i] =='{' && caracter =='}'){
+         pop(P);
+      }
+      else{
+         return 0;
       }
    }
    return 1;
 }
-

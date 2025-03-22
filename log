@@ -50,3 +50,18 @@ exercises.c:133:25: error: cast from pointer to integer of different size [-Werr
 cc1.exe: all warnings being treated as errors
 Compilation failed
 3eab505
+sá., 22 de mar. de 2025 19:02:13: 
+ exercises.c | 57 ++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 32 insertions(+), 25 deletions(-)
+In file included from test.c:5:0:
+exercises.c: In function 'imprime_lista':
+exercises.c:17:10: error: 'elem' undeclared (first use in this function)
+    while(elem !=NULL) {
+          ^~~~
+exercises.c:17:10: note: each undeclared identifier is reported only once for each function it appears in
+exercises.c:14:9: error: variable 'dato' set but not used [-Werror=unused-but-set-variable]
+    int *dato;
+         ^~~~
+cc1.exe: all warnings being treated as errors
+Compilation failed
+c3877a1
