@@ -2,3 +2,51 @@ sá., 22 de mar. de 2025 18:09:12:
  tests:  0|5
 total_score: 0/70
 3f6cb15
+sá., 22 de mar. de 2025 18:20:36: 
+ exercises.c | 53 ++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 52 insertions(+), 1 deletion(-)
+In file included from test.c:5:0:
+exercises.c: In function 'copia_pila':
+exercises.c:104:18: error: initialization makes integer from pointer without a cast [-Werror=int-conversion]
+       int elem = top(P1);
+                  ^~~
+exercises.c:105:15: error: passing argument 2 of 'push' makes pointer from integer without a cast [-Werror=int-conversion]
+       push(P3,elem);
+               ^~~~
+In file included from exercises.c:7:0,
+                 from test.c:5:
+stack.h:11:6: note: expected 'void *' but argument is of type 'int'
+ void push(Stack *stack, void *data) { pushFront(stack, data); }
+      ^~~~
+In file included from test.c:5:0:
+exercises.c:109:16: error: initialization makes integer from pointer without a cast [-Werror=int-conversion]
+       int elem=top(P3);
+                ^~~
+exercises.c:110:15: error: passing argument 2 of 'push' makes pointer from integer without a cast [-Werror=int-conversion]
+       push(P1,elem);
+               ^~~~
+In file included from exercises.c:7:0,
+                 from test.c:5:
+stack.h:11:6: note: expected 'void *' but argument is of type 'int'
+ void push(Stack *stack, void *data) { pushFront(stack, data); }
+      ^~~~
+In file included from test.c:5:0:
+exercises.c:111:15: error: passing argument 2 of 'push' makes pointer from integer without a cast [-Werror=int-conversion]
+       push(P2,elem);
+               ^~~~
+In file included from exercises.c:7:0,
+                 from test.c:5:
+stack.h:11:6: note: expected 'void *' but argument is of type 'int'
+ void push(Stack *stack, void *data) { pushFront(stack, data); }
+      ^~~~
+In file included from test.c:5:0:
+exercises.c: In function 'parentesisBalanceados':
+exercises.c:130:18: error: cast to pointer from integer of different size [-Werror=int-to-pointer-cast]
+          push(P, (void *)c);
+                  ^
+exercises.c:133:25: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
+          char topElem = (char)top(P);
+                         ^
+cc1.exe: all warnings being treated as errors
+Compilation failed
+3eab505
